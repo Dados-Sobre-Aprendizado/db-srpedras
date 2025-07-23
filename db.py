@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 def get_conn():
-    return psycopg2.connect(os.environ["DATABASE_URL"])
+    return psycopg2.connect(os.environ["postgresql://sys-user:reezzjdJr-2ORsgr2CK4hQ@artful-elf-13228.j77.aws-us-east-1.cockroachlabs.cloud:26257/livrariadb?sslmode=verify-full"])
 
 @contextmanager
 def get_cursor(commit=False):
@@ -14,6 +14,7 @@ def get_cursor(commit=False):
     Exemplo:
         with get_cursor() as cur:
             cur.execute("SELECT * FROM livros")
+
     """
     conn = get_conn()
     cur = conn.cursor()
